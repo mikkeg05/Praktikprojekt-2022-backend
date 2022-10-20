@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.TeamMembersList>
+@using ContentModels = SpaceDebris.Web.Models.ModelsBuilder;
+@{
+	Layout = "Master.cshtml";
+}
+<!DOCTYPE html>
+
+ <title> pog </title>
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("03af07ca-7517-4512-a3d9-e0fdd1f7e34b"))
+    .ChildrenOfType("teamMember")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+
+
+
+	@foreach (var item in selection)
+	{
+		<Teammember class="special">
+    <div class="teamMemberName">Member name: @item.Value("teamMemberName")</div><br>
+    <div class="title">Member title: @item.Value("title")</div>
+    <div class="memberName"><a href="@item.Url()">@item.Name</a></div>
+
+    <p>______________________________________________________________________________________________</p>
+    </Teammember>
+	}
+

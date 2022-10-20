@@ -1,0 +1,38 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.GarbageItem>
+@using ContentModels = SpaceDebris.Web.Models.ModelsBuilder;
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title> garbage :)</title>
+    
+</head>
+<body>
+    <form>
+        <div class="form-group">
+            <label for="weightInKg">Weight</label>
+            <input type="number" class="form-control" id="weightInKg" placeholder="Enter weight">
+        </div>
+        <div class="form-group">
+            <label for="lengthInMeters">Length</label>
+            <input type="number" class="form-control" id="lengthInMeters" placeholder="Enter length">
+        </div>
+        <div class="form-group">
+            <label for="widthInMeters">Width</label>
+            <input type="number" class="form-control" id="widthInMeters" placeholder="Enter width">
+        </div>
+        <div class="form-group">
+            <label for="depthInMeters">Depth</label>
+            <input type="number" class="form-control" id="depthInMeters" placeholder="Enter depth">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+</body>
+    
+    
+</html>

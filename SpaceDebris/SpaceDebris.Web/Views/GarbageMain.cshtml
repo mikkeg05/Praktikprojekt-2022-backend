@@ -1,0 +1,50 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.GarbageMain>
+@using ContentModels = SpaceDebris.Web.Models.ModelsBuilder;
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title> skrald lmao</title>
+    
+</head>
+<body>
+    
+    <div class="container"><p>
+        
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("0129d63f-fe45-465d-8c44-5ef8111a2743"))
+    .ChildrenOfType("garbageItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+<ul>
+	@foreach (var item in selection)
+	{
+		<GarbageItem class="special">
+    <div class="weight">Weight: @item.Value("weight")</div><br>
+    <div class="length">Length: @item.Value("length")</div><br>
+    <div class="width">Width: @item.Value("width")</div><br>
+    <div class="depth">Depth: @item.Value("depth")</div><br>
+    <div class="garbageName"><a href="@item.Url()">@item.Name</a></div>
+    <p>______________________________________________________________________________________________</p>
+    </GarbageItem>
+	}
+</ul>
+
+
+
+
+
+    </p></div>
+
+
+
+</body>
+    
+    
+</html>

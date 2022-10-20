@@ -1,0 +1,51 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.WebshopPage>
+@using ContentModels = SpaceDebris.Web.Models.ModelsBuilder;
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title> pog </title>
+    
+</head>
+<body>
+    
+    <div class="container"><p>
+
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("7d1eb41a-ec78-4aee-aee6-886fb7699340"))
+    .ChildrenOfType("trashBagItem")
+    .Where(x => x.IsVisible());
+}
+<h1>@Model.Value("title")</h1>
+<ul>
+	@foreach (var item in selection)
+	{
+	var image = item.Value<IPublishedContent>("image");
+	
+	<TrashBagItem class="special">
+    <div class="TrashBagSize">Size: @item.Value("size")</div><br>
+    <div class="price">Price: @item.Value("price")</div><br>
+    <div class="measurements">measurements: @item.Value("measurements")</div><br>
+    
+    <img src="@image.Url()"  alt=""/>
+    
+    <p>______________________________________________________________________________________________</p>
+    </TrashBagItem>
+	}
+</ul>
+
+
+
+
+
+    </p></div>
+    
+
+</body>
+
+</html>

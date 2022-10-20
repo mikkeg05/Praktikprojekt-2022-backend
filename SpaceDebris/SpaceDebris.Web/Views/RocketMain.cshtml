@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.RocketMain>
+@using ContentModels = SpaceDebris.Web.Models.ModelsBuilder;
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title> raket (: </title>
+    
+</head>
+<body>
+    
+    <div class="container"><p>
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("cb65f724-0ada-4b3f-880c-22b3f22c2012"))
+    .ChildrenOfType("rocketItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+<ul>
+	@foreach (var item in selection)
+	{
+	<RocketItem class="special">
+    <div class="rocketItemName">Name: @item.Value("rocketItemName")</div><br>
+    <div class="volume">Space: @item.Value("itemVolume")</div><br>
+    <li>
+        <div class="itemGarbageList">Garbage: @item.Value("itemGarbageList")</div><br>
+    </li>
+    <div class="garbageName"><a href="@item.Url()">@item.Name</a></div>
+    <p>______________________________________________________________________________________________</p>
+    </RocketItem>
+	}
+</ul>
+
+    </p></div>
+
+</body>
+
+</html>

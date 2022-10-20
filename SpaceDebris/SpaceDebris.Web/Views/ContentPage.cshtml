@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ContentPage>
+@using ContentModels = SpaceDebris.Web.Models.ModelsBuilder;
+@{
+	Layout = null;
+}
+
+@{ 
+    var items = Model.Value<IEnumerable<IPublishedElement>>("article");
+
+    foreach(var item in items)
+    {
+        var title = item.Value<string>("title");
+        var body = item.Value<string>("articleBody");
+        var image = item.Value<IPublishedContent>("articleImage");
+
+        <h3>@title</h3>
+        <h3>@body</h3>
+        if (image != null)
+        {
+        <img src="@image.Url()"  alt=""/>
+         }
+    }
+}
